@@ -53,7 +53,7 @@ function ScurveChart() {
           {
             title: 'Week Number',
             data: data.map(item => item.week_no), // Numeric x values
-            scaleType: 'linear', // Ensure the x-axis is treated as linear/numeric
+            scaleType: 'point', // Ensure the x-axis is treated as linear/numeric
             labelFormatter: (value) => `Week ${value}`, // Format the labels as "Week X"
           },
         ]}
