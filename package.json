@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@mui/x-charts": "^7.14.0",
     "axios": "^1.7.5",
     "chart.js": "^4.4.4",
     "react": "^18.0.0",

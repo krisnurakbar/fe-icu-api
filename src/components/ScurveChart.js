@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Line } from 'react-chartjs-2';
+import { LineChart } from '@mui/x-charts/LineChart';
 
 function ScurveChart() {
   const [data, setData] = useState([]);
@@ -8,7 +8,7 @@ function ScurveChart() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('https://be-icu-api.vercel.app/api/project-progress')
+    axios.get('http://<your-backend-server>/api/project-progress')
       .then(response => {
         setData(response.data);
         setLoading(false);
@@ -32,30 +32,28 @@ function ScurveChart() {
     return <div>No data available</div>;
   }
 
-  const chartData = {
-    labels: data.map(item => `Week ${item.week_no}`),
-    datasets: [
-      {
-        label: 'Planned Progress (%)',
-        data: data.map(item => item.plan_progress),
-        fill: false,
-        borderColor: 'blue',
-        tension: 0.1,
-      },
-      {
-        label: 'Actual Progress (%)',
-        data: data.map(item => item.actual_progress),
-        fill: false,
-        borderColor: 'red',
-        tension: 0.1,
-      },
-    ],
-  };
+  const planData = data.map(item => ({
+    x: `Week ${item.week_no}`,
+    y: item.plan_progress,
+  }));
+
+  const actualData = data.map(item => ({
+    x: `Week ${item.week_no}`,
+    y: item.actual_progress,
+  }));
 
   return (
     <div>
       <h2>S-curve Chart</h2>
-      <Line data={chartData} />
+      <LineChart
+        series={[
+          { label: 'Planned Progress (%)', data: planData },
+          { label: 'Actual Progress (%)', data: actualData },
+        ]}
+        width={600}
+        height={400}
+        xAxis={[{ data: data.map(item => `Week ${item.week_no}`) }]}
+      />
     </div>
   );
 }
