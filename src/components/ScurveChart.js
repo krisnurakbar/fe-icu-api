@@ -36,33 +36,39 @@ function ScurveChart() {
   }
 
   const planData = data.map(item => ({
-    x: `Week ${item.week_no}`,
+    x: item.week_no, // Use numeric week number as x value
     y: item.plan_progress,
   }));
-
+  
   const actualData = data.map(item => ({
-    x: `Week ${item.week_no}`,
+    x: item.week_no, // Use numeric week number as x value
     y: item.actual_progress,
   }));
-
+  
   return (
     <div>
       <h2>S-curve Chart</h2>
       <LineChart
+        width={600}
+        height={400}
         series={[
           { label: 'Planned Progress (%)', data: planData },
           { label: 'Actual Progress (%)', data: actualData },
         ]}
-        width={600}
-        height={400}
         xAxis={[
           {
             title: 'Week Number',
-            data: data.map(item => `Week ${item.week_no}`),
+            data: data.map(item => item.week_no), // Numeric x values
+            scaleType: 'linear', // Ensure the x-axis is treated as linear/numeric
+            labelFormatter: (value) => `Week ${value}`, // Format the labels as "Week X"
           },
         ]}
-        //series={[{ data: [null, null, 10, 11, 12] }]}
-        //xAxis={[{ data: [0, 1, 2, 3, 4, 5, 6] }]}
+        yAxis={[
+          {
+            title: 'Progress (%)',
+            // Optional: specify other axis options here
+          },
+        ]}
       />
     </div>
   );
