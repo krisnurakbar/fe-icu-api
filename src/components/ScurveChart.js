@@ -7,32 +7,7 @@ function ScurveChart() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const dataset = [
-    {
-      id: 'Planned Progress',
-      data: [
-        { x: 'Week 1', y: 5 },
-        { x: 'Week 2', y: 10 },
-        { x: 'Week 3', y: 14 },
-        // Add more data points here
-      ],
-    },
-    {
-      id: 'Actual Progress',
-      data: [
-        { x: 'Week 1', y: 3 },
-        { x: 'Week 2', y: 8 },
-        { x: 'Week 3', y: 15 },
-        // Add more data points here
-      ],
-    },
-  ];
-
-  return dataset.length > 0 ? (
-    <LineChart data={dataset} />
-  ) : (
-    <p>Loading data...</p>
-  );
+  
   
 
   useEffect(() => {
@@ -74,16 +49,21 @@ function ScurveChart() {
     <div>
       <h2>S-curve Chart</h2>
       <LineChart
-        series={[
-          { label: 'Planned Progress (%)', data: planData },
-          { label: 'Actual Progress (%)', data: actualData },
-        ]}
+        //series={[
+        //  { label: 'Planned Progress (%)', data: planData },
+        //  { label: 'Actual Progress (%)', data: actualData },
+        //]}
         width={600}
         height={400}
-        xAxis={[{ data: data.map(item => `Week ${item.week_no}`) }]}
+        //xAxis={[{ data: data.map(item => `Week ${item.week_no}`) }]}
+        series={[{ data: [null, null, 10, 11, 12] }]}
+        xAxis={[{ data: [0, 1, 2, 3, 4, 5, 6] }]}
       />
     </div>
   );
+
 }
+
+
 
 export default ScurveChart;
