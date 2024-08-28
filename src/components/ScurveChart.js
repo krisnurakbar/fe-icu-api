@@ -35,15 +35,9 @@ function ScurveChart() {
     return <div>No data available</div>;
   }
 
-  const planData = data.map(item => ({
-    x: item.week_no, // Use numeric week number as x value
-    y: item.plan_progress,
-  }));
-  
-  const actualData = data.map(item => ({
-    x: item.week_no, // Use numeric week number as x value
-    y: item.actual_progress,
-  }));
+  const planData = data.map(item => item.plan_progress);
+
+  const actualData = data.map(item => item.actual_progress);  
   
   return (
     <div>
