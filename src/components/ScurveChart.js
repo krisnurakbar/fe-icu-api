@@ -63,12 +63,6 @@ function ScurveChart() {
             labelFormatter: (value) => `Week ${value}`, // Format the labels as "Week X"
           },
         ]}
-        yAxis={[
-          {
-            title: 'Progress (%)',
-            // Optional: specify other axis options here
-          },
-        ]}
       />
     </div>
   );
