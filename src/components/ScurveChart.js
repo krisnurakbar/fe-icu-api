@@ -7,6 +7,34 @@ function ScurveChart() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const dataset = [
+    {
+      id: 'Planned Progress',
+      data: [
+        { x: 'Week 1', y: 5 },
+        { x: 'Week 2', y: 10 },
+        { x: 'Week 3', y: 14 },
+        // Add more data points here
+      ],
+    },
+    {
+      id: 'Actual Progress',
+      data: [
+        { x: 'Week 1', y: 3 },
+        { x: 'Week 2', y: 8 },
+        { x: 'Week 3', y: 15 },
+        // Add more data points here
+      ],
+    },
+  ];
+
+  return dataset.length > 0 ? (
+    <LineChart data={dataset} />
+  ) : (
+    <p>Loading data...</p>
+  );
+  
+
   useEffect(() => {
     axios.get('https://be-icu-api.vercel.app/api/project-progress')
       .then(response => {
