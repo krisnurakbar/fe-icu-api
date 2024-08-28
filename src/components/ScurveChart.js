@@ -49,15 +49,20 @@ function ScurveChart() {
     <div>
       <h2>S-curve Chart</h2>
       <LineChart
-        //series={[
-        //  { label: 'Planned Progress (%)', data: planData },
-        //  { label: 'Actual Progress (%)', data: actualData },
-        //]}
+        series={[
+          { label: 'Planned Progress (%)', data: planData },
+          { label: 'Actual Progress (%)', data: actualData },
+        ]}
         width={600}
         height={400}
-        //xAxis={[{ data: data.map(item => `Week ${item.week_no}`) }]}
-        series={[{ data: [null, null, 10, 11, 12] }]}
-        xAxis={[{ data: [0, 1, 2, 3, 4, 5, 6] }]}
+        xAxis={[
+          {
+            title: 'Week Number',
+            data: data.map(item => `Week ${item.week_no}`),
+          },
+        ]}
+        //series={[{ data: [null, null, 10, 11, 12] }]}
+        //xAxis={[{ data: [0, 1, 2, 3, 4, 5, 6] }]}
       />
     </div>
   );
