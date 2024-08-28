@@ -8,7 +8,7 @@ function ScurveChart() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://<your-backend-server>/api/project-progress')
+    axios.get('https://be-icu-api.vercel.app/api/project-progress')
       .then(response => {
         setData(response.data);
         setLoading(false);
